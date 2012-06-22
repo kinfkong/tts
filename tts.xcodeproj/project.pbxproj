@@ -1,0 +1,449 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		729140881594A98D0047D4BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729140871594A98D0047D4BC /* UIKit.framework */; };
+		7291408A1594A98D0047D4BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729140891594A98D0047D4BC /* Foundation.framework */; };
+		7291408C1594A98D0047D4BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7291408B1594A98D0047D4BC /* CoreGraphics.framework */; };
+		7291408E1594A98D0047D4BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7291408D1594A98D0047D4BC /* CoreData.framework */; };
+		729140941594A98D0047D4BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 729140921594A98D0047D4BC /* InfoPlist.strings */; };
+		729140961594A98D0047D4BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 729140951594A98D0047D4BC /* main.m */; };
+		7291409A1594A98D0047D4BC /* kkAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 729140991594A98D0047D4BC /* kkAppDelegate.m */; };
+		7291409D1594A98D0047D4BC /* tts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7291409B1594A98D0047D4BC /* tts.xcdatamodeld */; };
+		729140A51594A98D0047D4BC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729140A41594A98D0047D4BC /* SenTestingKit.framework */; };
+		729140A61594A98D0047D4BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729140871594A98D0047D4BC /* UIKit.framework */; };
+		729140A71594A98D0047D4BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729140891594A98D0047D4BC /* Foundation.framework */; };
+		729140A81594A98D0047D4BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7291408D1594A98D0047D4BC /* CoreData.framework */; };
+		729140B01594A98D0047D4BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 729140AE1594A98D0047D4BC /* InfoPlist.strings */; };
+		729140B31594A98D0047D4BC /* ttsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 729140B21594A98D0047D4BC /* ttsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		729140A91594A98D0047D4BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7291407A1594A98D0047D4BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 729140821594A98D0047D4BC;
+			remoteInfo = tts;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		729140831594A98D0047D4BC /* tts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		729140871594A98D0047D4BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		729140891594A98D0047D4BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7291408B1594A98D0047D4BC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7291408D1594A98D0047D4BC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		729140911594A98D0047D4BC /* tts-Info.plist */ = {isa = PBXFileReference; path = "tts-Info.plist"; sourceTree = "<group>"; };
+		729140931594A98D0047D4BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		729140951594A98D0047D4BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		729140971594A98D0047D4BC /* tts-Prefix.pch */ = {isa = PBXFileReference; path = "tts-Prefix.pch"; sourceTree = "<group>"; };
+		729140981594A98D0047D4BC /* kkAppDelegate.h */ = {isa = PBXFileReference; path = kkAppDelegate.h; sourceTree = "<group>"; };
+		729140991594A98D0047D4BC /* kkAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kkAppDelegate.m; sourceTree = "<group>"; };
+		7291409C1594A98D0047D4BC /* tts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tts.xcdatamodel; sourceTree = "<group>"; };
+		729140A31594A98D0047D4BC /* ttsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ttsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		729140A41594A98D0047D4BC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		729140AD1594A98D0047D4BC /* ttsTests-Info.plist */ = {isa = PBXFileReference; path = "ttsTests-Info.plist"; sourceTree = "<group>"; };
+		729140AF1594A98D0047D4BC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		729140B11594A98D0047D4BC /* ttsTests.h */ = {isa = PBXFileReference; path = ttsTests.h; sourceTree = "<group>"; };
+		729140B21594A98D0047D4BC /* ttsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ttsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		729140801594A98D0047D4BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				729140881594A98D0047D4BC /* UIKit.framework in Frameworks */,
+				7291408A1594A98D0047D4BC /* Foundation.framework in Frameworks */,
+				7291408C1594A98D0047D4BC /* CoreGraphics.framework in Frameworks */,
+				7291408E1594A98D0047D4BC /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7291409F1594A98D0047D4BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				729140A51594A98D0047D4BC /* SenTestingKit.framework in Frameworks */,
+				729140A61594A98D0047D4BC /* UIKit.framework in Frameworks */,
+				729140A71594A98D0047D4BC /* Foundation.framework in Frameworks */,
+				729140A81594A98D0047D4BC /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		729140781594A98D0047D4BC = {
+			isa = PBXGroup;
+			children = (
+				7291408F1594A98D0047D4BC /* tts */,
+				729140AB1594A98D0047D4BC /* ttsTests */,
+				729140861594A98D0047D4BC /* Frameworks */,
+				729140841594A98D0047D4BC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		729140841594A98D0047D4BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				729140831594A98D0047D4BC /* tts.app */,
+				729140A31594A98D0047D4BC /* ttsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		729140861594A98D0047D4BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				729140871594A98D0047D4BC /* UIKit.framework */,
+				729140891594A98D0047D4BC /* Foundation.framework */,
+				7291408B1594A98D0047D4BC /* CoreGraphics.framework */,
+				7291408D1594A98D0047D4BC /* CoreData.framework */,
+				729140A41594A98D0047D4BC /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7291408F1594A98D0047D4BC /* tts */ = {
+			isa = PBXGroup;
+			children = (
+				729140981594A98D0047D4BC /* kkAppDelegate.h */,
+				729140991594A98D0047D4BC /* kkAppDelegate.m */,
+				7291409B1594A98D0047D4BC /* tts.xcdatamodeld */,
+				729140901594A98D0047D4BC /* Supporting Files */,
+			);
+			path = tts;
+			sourceTree = "<group>";
+		};
+		729140901594A98D0047D4BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				729140911594A98D0047D4BC /* tts-Info.plist */,
+				729140921594A98D0047D4BC /* InfoPlist.strings */,
+				729140951594A98D0047D4BC /* main.m */,
+				729140971594A98D0047D4BC /* tts-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		729140AB1594A98D0047D4BC /* ttsTests */ = {
+			isa = PBXGroup;
+			children = (
+				729140B11594A98D0047D4BC /* ttsTests.h */,
+				729140B21594A98D0047D4BC /* ttsTests.m */,
+				729140AC1594A98D0047D4BC /* Supporting Files */,
+			);
+			path = ttsTests;
+			sourceTree = "<group>";
+		};
+		729140AC1594A98D0047D4BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				729140AD1594A98D0047D4BC /* ttsTests-Info.plist */,
+				729140AE1594A98D0047D4BC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		729140821594A98D0047D4BC /* tts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 729140B61594A98D0047D4BC /* Build configuration list for PBXNativeTarget "tts" */;
+			buildPhases = (
+				7291407F1594A98D0047D4BC /* Sources */,
+				729140801594A98D0047D4BC /* Frameworks */,
+				729140811594A98D0047D4BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tts;
+			productName = tts;
+			productReference = 729140831594A98D0047D4BC /* tts.app */;
+			productType = "com.apple.product-type.application";
+		};
+		729140A21594A98D0047D4BC /* ttsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 729140B91594A98D0047D4BC /* Build configuration list for PBXNativeTarget "ttsTests" */;
+			buildPhases = (
+				7291409E1594A98D0047D4BC /* Sources */,
+				7291409F1594A98D0047D4BC /* Frameworks */,
+				729140A01594A98D0047D4BC /* Resources */,
+				729140A11594A98D0047D4BC /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				729140AA1594A98D0047D4BC /* PBXTargetDependency */,
+			);
+			name = ttsTests;
+			productName = ttsTests;
+			productReference = 729140A31594A98D0047D4BC /* ttsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7291407A1594A98D0047D4BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = kk;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = tencent;
+			};
+			buildConfigurationList = 7291407D1594A98D0047D4BC /* Build configuration list for PBXProject "tts" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 729140781594A98D0047D4BC;
+			productRefGroup = 729140841594A98D0047D4BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				729140821594A98D0047D4BC /* tts */,
+				729140A21594A98D0047D4BC /* ttsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		729140811594A98D0047D4BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				729140941594A98D0047D4BC /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		729140A01594A98D0047D4BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				729140B01594A98D0047D4BC /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		729140A11594A98D0047D4BC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7291407F1594A98D0047D4BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				729140961594A98D0047D4BC /* main.m in Sources */,
+				7291409A1594A98D0047D4BC /* kkAppDelegate.m in Sources */,
+				7291409D1594A98D0047D4BC /* tts.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7291409E1594A98D0047D4BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				729140B31594A98D0047D4BC /* ttsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		729140AA1594A98D0047D4BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 729140821594A98D0047D4BC /* tts */;
+			targetProxy = 729140A91594A98D0047D4BC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		729140921594A98D0047D4BC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				729140931594A98D0047D4BC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		729140AE1594A98D0047D4BC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				729140AF1594A98D0047D4BC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		729140B41594A98D0047D4BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		729140B51594A98D0047D4BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		729140B71594A98D0047D4BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "tts/tts-Prefix.pch";
+				INFOPLIST_FILE = "tts/tts-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		729140B81594A98D0047D4BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "tts/tts-Prefix.pch";
+				INFOPLIST_FILE = "tts/tts-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		729140BA1594A98D0047D4BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/tts.app/tts";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "tts/tts-Prefix.pch";
+				INFOPLIST_FILE = "ttsTests/ttsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		729140BB1594A98D0047D4BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/tts.app/tts";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "tts/tts-Prefix.pch";
+				INFOPLIST_FILE = "ttsTests/ttsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7291407D1594A98D0047D4BC /* Build configuration list for PBXProject "tts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				729140B41594A98D0047D4BC /* Debug */,
+				729140B51594A98D0047D4BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		729140B61594A98D0047D4BC /* Build configuration list for PBXNativeTarget "tts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				729140B71594A98D0047D4BC /* Debug */,
+				729140B81594A98D0047D4BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		729140B91594A98D0047D4BC /* Build configuration list for PBXNativeTarget "ttsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				729140BA1594A98D0047D4BC /* Debug */,
+				729140BB1594A98D0047D4BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7291409B1594A98D0047D4BC /* tts.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7291409C1594A98D0047D4BC /* tts.xcdatamodel */,
+			);
+			currentVersion = 7291409C1594A98D0047D4BC /* tts.xcdatamodel */;
+			path = tts.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 7291407A1594A98D0047D4BC /* Project object */;
+}
