@@ -75,13 +75,30 @@
 }
 */
 
+-(int) getWhatToShow:(NSIndexPath *)indexPath {
+    int what = kkChatViewShowAll;
+    int index = [indexPath row];
+    if (index != 0) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSString* theTime = [(NSDictionary *) [self.msgArray objectAtIndex:index] objectForKey:@"time"];
+        NSDate* date1 = [dateFormatter dateFromString:theTime];
+        theTime = [(NSDictionary *) [self.msgArray objectAtIndex:index - 1] objectForKey:@"time"];
+        NSDate* date2 = [dateFormatter dateFromString:theTime];
+        if (abs(date1.timeIntervalSince1970 - date2.timeIntervalSince1970) < 60) {
+            what ^= kkChatViewShowTime;
+        }
+    }
+    return what;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [kkChatViewCell heightForCell:[self.msgArray objectAtIndex:[indexPath row]]];
+    return [kkChatViewCell heightForCell:[self.msgArray objectAtIndex:[indexPath row]] show:[self getWhatToShow:indexPath]];
 }
 
 
@@ -104,8 +121,8 @@
         cell = [[kkChatViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    cell.msgData = [self.msgArray objectAtIndex:[indexPath row]];
-    
+    //cell.msgData = [self.msgArray objectAtIndex:[indexPath row]];
+    [cell setMsgData:[self.msgArray objectAtIndex:[indexPath row]] show:[self getWhatToShow:indexPath]];
     return cell;
 }
 
@@ -162,7 +179,8 @@
         } else {
             [msgData setObject:@"dalitt" forKey:@"userid"];
         }
-        [msgData setObject:@"星期五 12:10" forKey:@"time"];
+        [msgData setObject:@"2012-06-22 12:10:10" forKey:@"time"];
+        //[msgData setObject:@"对方还没查看你的信息,请稍候" forKey:@"statusmsg"];
         [newMsgArray addObject:msgData];
     }
     [self pushMsgs:newMsgArray];

@@ -137,11 +137,14 @@
 -(void) textView:(kkGrowTextView *) textView sendMsg:(NSString *)msg {
     
     NSString* innerMsgId = [NSString stringWithFormat:@"%d", random()];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString* timeString = [dateFormatter stringFromDate:[NSDate date]];
     NSDictionary* msgData = [NSDictionary dictionaryWithObjectsAndKeys:msg, @"msg", 
                              currentUser, @"userid",
                              @"sending", @"status", 
                              innerMsgId, @"innerid", 
-                             @"12:10", @"time", nil];
+                             timeString, @"time", nil];
     [self.msgListView appendMsg:msgData];
     // test
     [self performSelector:@selector(finishSendingMsg:) withObject:msgData afterDelay:3.0];

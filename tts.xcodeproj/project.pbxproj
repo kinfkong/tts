@@ -42,6 +42,10 @@
 		72A93856159A0D520098689C /* kkProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72A93855159A0D520098689C /* kkProfileHeaderView.m */; };
 		72A9385B159A1BE50098689C /* question_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 72A93859159A1BE50098689C /* question_mark.png */; };
 		72A9385C159A1BE50098689C /* question_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72A9385A159A1BE50098689C /* question_mark@2x.png */; };
+		72BBE0B3159C9D9A0080BD5F /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BBE0B0159C9D9A0080BD5F /* NSDate-Utilities.m */; };
+		72BBE0B4159C9D9A0080BD5F /* TimeFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BBE0B2159C9D9A0080BD5F /* TimeFormatters.m */; };
+		72BBE0B5159CA1690080BD5F /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BBE0B0159C9D9A0080BD5F /* NSDate-Utilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		72BBE0B6159CA1690080BD5F /* TimeFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BBE0B2159C9D9A0080BD5F /* TimeFormatters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72C5198D15959B0E00AC3D7E /* kkTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C5198C15959B0E00AC3D7E /* kkTestViewController.m */; };
 		72CFB43F1594B0E900BB94E9 /* kkLongPolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CFB43E1594B0E900BB94E9 /* kkLongPolling.m */; };
 		72DBCEE11595FAF600B3BC94 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7291408D1594A98D0047D4BC /* CoreData.framework */; };
@@ -119,6 +123,10 @@
 		72A93855159A0D520098689C /* kkProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kkProfileHeaderView.m; sourceTree = "<group>"; };
 		72A93859159A1BE50098689C /* question_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_mark.png; sourceTree = "<group>"; };
 		72A9385A159A1BE50098689C /* question_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question_mark@2x.png"; sourceTree = "<group>"; };
+		72BBE0AF159C9D9A0080BD5F /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
+		72BBE0B0159C9D9A0080BD5F /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
+		72BBE0B1159C9D9A0080BD5F /* TimeFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeFormatters.h; sourceTree = "<group>"; };
+		72BBE0B2159C9D9A0080BD5F /* TimeFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeFormatters.m; sourceTree = "<group>"; };
 		72C5198B15959B0E00AC3D7E /* kkTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kkTestViewController.h; sourceTree = "<group>"; };
 		72C5198C15959B0E00AC3D7E /* kkTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kkTestViewController.m; sourceTree = "<group>"; };
 		72CFB43D1594B0E900BB94E9 /* kkLongPolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kkLongPolling.h; sourceTree = "<group>"; };
@@ -315,6 +323,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		72BBE0AD159C9D7C0080BD5F /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				72BBE0AF159C9D9A0080BD5F /* NSDate-Utilities.h */,
+				72BBE0B0159C9D9A0080BD5F /* NSDate-Utilities.m */,
+				72BBE0B1159C9D9A0080BD5F /* TimeFormatters.h */,
+				72BBE0B2159C9D9A0080BD5F /* TimeFormatters.m */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
 		72C5198A15959AD700AC3D7E /* controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +361,7 @@
 		72DBCED91595DF5700B3BC94 /* third */ = {
 			isa = PBXGroup;
 			children = (
+				72BBE0AD159C9D7C0080BD5F /* utils */,
 				728835C81599282700A12E91 /* refreshview */,
 				7287DD131598AAC70006DE7B /* gradienbutton */,
 				72DBCEE21595FC6200B3BC94 /* sbjson */,
@@ -497,6 +517,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72BBE0B5159CA1690080BD5F /* NSDate-Utilities.m in Sources */,
+				72BBE0B6159CA1690080BD5F /* TimeFormatters.m in Sources */,
 				728835CD1599288D00A12E91 /* EGORefreshTableHeaderView.m in Sources */,
 				7287DD171598ABA20006DE7B /* GradientButton.m in Sources */,
 				729140961594A98D0047D4BC /* main.m in Sources */,
@@ -535,6 +557,8 @@
 				729140B31594A98D0047D4BC /* ttsTests.m in Sources */,
 				7287DD161598AAE80006DE7B /* GradientButton.m in Sources */,
 				728835CC1599283B00A12E91 /* EGORefreshTableHeaderView.m in Sources */,
+				72BBE0B3159C9D9A0080BD5F /* NSDate-Utilities.m in Sources */,
+				72BBE0B4159C9D9A0080BD5F /* TimeFormatters.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
