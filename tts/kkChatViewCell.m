@@ -8,7 +8,7 @@
 
 #import "kkChatViewCell.h"
 
-#define KKCHATCELL_TIME_FONT ([UIFont systemFontOfSize:14])
+#define KKCHATCELL_TIME_FONT ([UIFont systemFontOfSize:12])
 #define KKCHATCELL_TIME_HEIGHT (20)
 #define KKCHATCELL_PROFILEVIEW_HEIGHT (50)
 
@@ -87,7 +87,7 @@
     CGSize TimeLabelSize = [timeLable.text sizeWithFont:KKCHATCELL_TIME_FONT
                                   constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT) 
                                       lineBreakMode:UILineBreakModeWordWrap];
-    timeLable.frame = CGRectMake((320 - TimeLabelSize.width) / 2, 5, TimeLabelSize.width, KKCHATCELL_TIME_HEIGHT);
+    timeLable.frame = CGRectMake((320 - TimeLabelSize.width) / 2, 0, TimeLabelSize.width, KKCHATCELL_TIME_HEIGHT);
                                  
     CGPoint ori;
     if (type == 0) {

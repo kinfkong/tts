@@ -19,7 +19,6 @@
     
     NSMutableArray* msgArray;
     NSString* currentUser;
-    // add msg for github test
 }
 
 @property(nonatomic, retain) id<kkMsgListViewDelegate> delegate;

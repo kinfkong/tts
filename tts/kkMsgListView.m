@@ -162,7 +162,7 @@
         } else {
             [msgData setObject:@"dalitt" forKey:@"userid"];
         }
-        [msgData setObject:@"12:10" forKey:@"time"];
+        [msgData setObject:@"星期五 12:10" forKey:@"time"];
         [newMsgArray addObject:msgData];
     }
     [self pushMsgs:newMsgArray];

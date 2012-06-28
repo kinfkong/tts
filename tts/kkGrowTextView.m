@@ -25,14 +25,16 @@
         
         CAGradientLayer *gradient = [CAGradientLayer layer];
         gradient.frame = self.bounds;
-        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blueColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
+        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor lightGrayColor] CGColor], (id)[[UIColor grayColor] CGColor], nil];
         [self.layer insertSublayer:gradient atIndex:0];
         
         
-        CGFloat buttonWidth = 70;
+        CGFloat buttonWidth = 60;
         CGRect buttonframe = CGRectMake(frame.size.width - buttonWidth - 10, 6, buttonWidth, frame.size.height - 6 * 2);
         sendButton = [[GradientButton alloc] initWithFrame:buttonframe];
-        [sendButton useGreenConfirmStyle];
+        [sendButton useWhiteStyle];
+        sendButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        sendButton.titleLabel.textColor = [UIColor whiteColor];
         [sendButton setTitle:@"发送" forState:UIControlStateNormal];
         //sendButton.enabled = NO;
         [sendButton addTarget:self action:@selector(sendButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -109,7 +111,7 @@
         
         CAGradientLayer *gradient = [CAGradientLayer layer];
         gradient.frame = self.bounds;
-        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blueColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
+        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor lightGrayColor] CGColor], (id)[[UIColor grayColor] CGColor], nil];
         CALayer* layer = [[self.layer sublayers] objectAtIndex:0];
         [self.layer replaceSublayer:layer with:gradient];
         //[self.layer insertSublayer:gradient atIndex:0];
