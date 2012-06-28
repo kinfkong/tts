@@ -45,10 +45,10 @@
     // self.view.backgroundColor = [UIColor whiteColor];
     //UIImage* bgImage = [UIImage imageNamed:@"chat_bg.png"];
     //self.view.backgroundColor  = [UIColor colorWithPatternImage:bgImage];
-
+/*
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(testing)];
 	self.navigationItem.rightBarButtonItem = item;
-    
+  */  
     CGFloat textViewHeight = 48;
     CGFloat navBarHeight = 44;
     // the table view
@@ -75,6 +75,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];  
     }  
     
+ 
     
     currentUser = @"kinfkong";
     
