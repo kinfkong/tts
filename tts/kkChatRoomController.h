@@ -15,7 +15,10 @@
     kkGrowTextView* editTextView;
     CGFloat keyboardHeight;
     NSString* currentUser;
+    int cr_id;
 }
+-(id) initWithChatRoomId:(int) cr_id;
+
 
 @property (nonatomic, retain) kkMsgListView* msgListView;
 @property (nonatomic, retain) kkGrowTextView* editTextView;

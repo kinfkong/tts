@@ -12,8 +12,10 @@
     UIImageView* questionMark;
     int type;
 }
--(id) initWithFrame:(CGRect)frame image:(UIImage *) image type:(int) type;
 
--(void) setType:(int) type;
+-(id) initWithFrame:(CGRect)frame image:(UIImage *) image;
+
+
+-(void) setShowQuestionMark:(bool)showQuestionMark;
 
 @end

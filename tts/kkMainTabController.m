@@ -30,7 +30,7 @@
 	// Do any additional setup after loading the view.
     kkChatListController* chatList = [[kkChatListController alloc] init];
     UINavigationController* chat = [[UINavigationController alloc] initWithRootViewController:chatList];
-    chat.navigationBar.tintColor = [UIColor grayColor];
+    chat.navigationBar.tintColor = [UIColor colorWithWhite:0.3 alpha:1];
     self.viewControllers = [NSArray arrayWithObjects:chat, nil];
 }
 

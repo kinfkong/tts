@@ -16,6 +16,8 @@
 
 @implementation kkMsgListView
 
+@synthesize chatRoomInfo;
+
 @synthesize msgArray;
 
 @synthesize delegate;
@@ -81,9 +83,9 @@
     if (index != 0) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSString* theTime = [(NSDictionary *) [self.msgArray objectAtIndex:index] objectForKey:@"time"];
+        NSString* theTime = [(NSDictionary *) [self.msgArray objectAtIndex:index] objectForKey:@"create_time"];
         NSDate* date1 = [dateFormatter dateFromString:theTime];
-        theTime = [(NSDictionary *) [self.msgArray objectAtIndex:index - 1] objectForKey:@"time"];
+        theTime = [(NSDictionary *) [self.msgArray objectAtIndex:index - 1] objectForKey:@"create_time"];
         NSDate* date2 = [dateFormatter dateFromString:theTime];
         if (abs(date1.timeIntervalSince1970 - date2.timeIntervalSince1970) < 60) {
             what ^= kkChatViewShowTime;
@@ -110,9 +112,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)_tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* msgUser = [(NSDictionary *) [self.msgArray objectAtIndex:[indexPath row]] objectForKey:@"userid"];
+    NSNumber* sender = [(NSDictionary *) [self.msgArray objectAtIndex:[indexPath row]] objectForKey:@"sender"];
     NSString* identifier = @"kkOtherChatView";
-    if ([msgUser isEqualToString:currentUser]) {
+    if ([sender intValue] == 1) {
         identifier = @"kkMyChatView";
     }
     
@@ -160,7 +162,7 @@
 	//  should be calling your tableviews data source model to reload
 	//  put here just for demo
 	_reloading = YES;
-	[self performSelector:@selector(doneHeaderLoadingTableViewData) withObject:nil afterDelay:3.0];
+	[self performSelector:@selector(doneHeaderLoadingTableViewData) withObject:nil afterDelay:0.3];
 }
 
 - (void)doneHeaderLoadingTableViewData{
@@ -169,22 +171,9 @@
 	_reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:tableView];
 	
-    // test code
-    NSMutableArray* newMsgArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 2; i++) {
-        NSMutableDictionary* msgData = [[NSMutableDictionary alloc] init];
-        [msgData setObject:@"new msg lalalallalalallalalalalallalalal" forKey:@"msg"];
-        if (i % 2 != 0) {
-            [msgData setObject:@"kinfkong" forKey:@"userid"];
-        } else {
-            [msgData setObject:@"dalitt" forKey:@"userid"];
-        }
-        [msgData setObject:@"2012-06-22 12:10:10" forKey:@"time"];
-        //[msgData setObject:@"对方还没查看你的信息,请稍候" forKey:@"statusmsg"];
-        [newMsgArray addObject:msgData];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(headerWillLoad:)]) {
+        [delegate headerWillLoad:self];
     }
-    [self pushMsgs:newMsgArray];
-    // end test code
 }
 
 
@@ -242,17 +231,21 @@
 }
 
 -(void) pushMsgs:(NSArray *)msgs {
-    for (int i = 0; i < [msgs count]; i++) {
+    if ([msgs count] == 0) {
+        return;
+    }
+    for (int i = [msgs count] - 1; i >= 0; i--) {
         [self.msgArray insertObject:[msgs objectAtIndex:i] atIndex:0];
     }
     [tableView reloadData];
 }
 
--(void) updateMsg:(NSString*) innerMsgId withStatus:(NSString *) status {
+-(void) updateMsg:(int) msg_id withStatus:(NSString *) status {
     for (int i = [msgArray count] - 1; i >= 0; i--) {
         NSDictionary* msg = [msgArray objectAtIndex:i];
-        NSString* theId = [msg objectForKey:@"innerid"];
-        if ([theId isEqualToString:innerMsgId]) {
+        NSNumber* theId = [msg objectForKey:@"id"];
+        //NSLog(@"inner msg:%@, status:%@ msg_id:%d", msg, status, msg_id);
+        if ([theId intValue] == msg_id) {
             NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:msg];
             [dict setObject:status forKey:@"status"];
             [msgArray replaceObjectAtIndex:i withObject:dict];
@@ -262,5 +255,10 @@
     [tableView reloadData];
     
 }
+
+-(void) reloadData {
+    [tableView reloadData];
+}
+
 
 @end

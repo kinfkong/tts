@@ -8,20 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "GradientButton.h"
+#import "UIGlossyButton.h"
+
+#import "HPGrowingTextView.h"
+
 
 @protocol kkGrowTextViewDelegate;
 
-@interface kkGrowTextView : UIView <UITextViewDelegate> {
-    UITextView* msgTextView;
-    CGFloat oriHeight;
-    CGFloat maxHeight;
-    GradientButton* sendButton;
+@interface kkGrowTextView : UIView <HPGrowingTextViewDelegate> {
+    HPGrowingTextView* msgTextView;
+    //CGFloat oriHeight;
+    //CGFloat maxHeight;
+    UIGlossyButton* sendButton;
     id<kkGrowTextViewDelegate> delegate;
 }
 
 
 @property (nonatomic, retain) id<kkGrowTextViewDelegate> delegate;
-@property (readonly) UITextView* msgTextView;
+@property (readonly) HPGrowingTextView* msgTextView;
 
 -(void) moveTo:(CGFloat) y;
 

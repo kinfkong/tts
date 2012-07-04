@@ -24,6 +24,7 @@ enum {
     kkProfileHeaderView* profileView;
     UILabel* timeLable;
     UILabel* statusLabel;
+    UIImageView* warningView;
 }
 
 -(void) setMsgData:(NSDictionary *)msgData show:(int) what;

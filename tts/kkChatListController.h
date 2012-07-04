@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface kkChatListController : UIViewController
+@interface kkChatListController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    UITableView* tableView;
+    NSArray* chatList;
+}
 
 @end

@@ -8,7 +8,7 @@
 
 #import "kkBubbleLabel.h"
 
-#define KKCHATCELL_FONT ([UIFont systemFontOfSize:17])
+#define KKCHATCELL_FONT ([UIFont systemFontOfSize:15])
 #define KKCHATCELL_MAX_WIDTH 200
 
 

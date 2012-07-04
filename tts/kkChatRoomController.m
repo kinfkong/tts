@@ -9,6 +9,7 @@
 #import "kkChatRoomController.h"
 #import "kkMsgListView.h"
 #import "kkGrowTextView.h"
+#import "kkMsgDataMgr.h"
 
 @interface kkChatRoomController ()
 
@@ -29,6 +30,18 @@
     return self;
 }
 
+-(id) init {
+    return [self initWithChatRoomId:-1];
+}
+
+-(id) initWithChatRoomId:(int)_cr_id {
+    self = [super init];
+    if (self) {
+        cr_id = _cr_id;
+    }
+    return self;
+}
+
 -(void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -37,6 +50,33 @@
     [self.editTextView moveTo:100];
 }
 
+-(void) insertTestData {
+    NSMutableDictionary* msg = [[NSMutableDictionary alloc] init];
+    NSString* text = [NSString stringWithFormat:@"the s:%.3lf", [[NSDate date] timeIntervalSince1970]];
+    [msg setObject:text forKey:@"text"];
+    [msg setObject:@"2012-03-18 12:30:33" forKey:@"create_time"];
+    
+    [msg setObject:@"normal" forKey:@"status"];
+    [msg setObject:[NSNumber numberWithInt:(rand() % 2) + 1] forKey:@"sender"];
+    
+    //[dataMgr insertMsg:msg toChatRoom:101];
+    NSMutableDictionary* chatInfo = [[NSMutableDictionary alloc] init];
+    [chatInfo setObject:[NSNumber numberWithInt:1] forKey:@"cr_id"];
+    [chatInfo setObject:@"shenmiren001" forKey:@"user_name"];
+    [chatInfo setObject:@"0" forKey:@"user_id"];
+    [chatInfo setObject:@"www.baidu.com" forKey:@"user_profile_url"];
+    [chatInfo setObject:[NSNumber numberWithInt:1] forKey:@"user_gender"];
+    [chatInfo setObject:@"kinfkong" forKey:@"my_name"];
+    [chatInfo setObject:@"www.google.com" forKey:@"my_profile_url"];
+    //[dataMgr insertNewMsgs:chatInfo msgs:[NSArray arrayWithObjects:msg, nil]];
+    
+    kkMsgDataMgr* dataMgr = [kkMsgDataMgr getInstance];
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:chatInfo, @"chatinfo", [NSArray arrayWithObjects:msg, nil], @"msgs", nil];
+    
+    [dataMgr performSelector:@selector(receivedMsgs:) withObject:[NSArray arrayWithObjects:dict,nil]];
+    //-(NSArray*) getMsgsForChatRoom:(int) cr_id 
+    // [dataMgr getMsgsForChatRoom:101];
+}
 
 - (void)viewDidLoad
 {
@@ -49,7 +89,7 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(testing)];
 	self.navigationItem.rightBarButtonItem = item;
   */  
-    CGFloat textViewHeight = 48;
+    CGFloat textViewHeight = 52;
     CGFloat navBarHeight = 44;
     // the table view
     kkMsgListView* mlv = [[kkMsgListView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - navBarHeight - textViewHeight)];
@@ -75,7 +115,21 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];  
     }  
     
- 
+    if (cr_id > 0) {
+        kkMsgDataMgr* dataMgr = [kkMsgDataMgr getInstance];
+        NSDictionary* chatRoomInfo = [dataMgr getChatRoomInfo:cr_id];
+        self.msgListView.chatRoomInfo = chatRoomInfo;
+        NSArray* msgs = [[kkMsgDataMgr getInstance] getMsgsForChatRoom:cr_id];
+        self.msgListView.msgArray = [NSMutableArray arrayWithArray:msgs];
+        [self.msgListView reloadData];
+        [dataMgr addObserver:self event:kkMsgDataReceivedNewMsgs];
+        [dataMgr addObserver:self event:kkMsgDataMgrMsgSending];
+        [dataMgr addObserver:self event:kkMsgDataMgrMsgDidSend];
+        [self.msgListView moveToBottom];
+    }
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(insertTestData)];
+	self.navigationItem.rightBarButtonItem = item;
     
     currentUser = @"kinfkong";
     
@@ -117,6 +171,9 @@
     // Release any retained subviews of the main view.
     self.msgListView = nil;
     self.editTextView = nil;
+    [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataReceivedNewMsgs];
+    [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataMgrMsgSending];    
+    [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataMgrMsgDidSend];    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -131,12 +188,9 @@
 }
 
 // a test method
--(void) finishSendingMsg:(NSDictionary *) msg {
-    [self.msgListView updateMsg:[msg objectForKey:@"innerid"] withStatus:@"finished"];
-}
 
 -(void) textView:(kkGrowTextView *) textView sendMsg:(NSString *)msg {
-    
+    /*
     NSString* innerMsgId = [NSString stringWithFormat:@"%d", random()];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -148,11 +202,58 @@
                              timeString, @"time", nil];
     [self.msgListView appendMsg:msgData];
     // test
-    [self performSelector:@selector(finishSendingMsg:) withObject:msgData afterDelay:3.0];
+    [self performSelector:@selector(finishSendingMsg:) withObject:msgData afterDelay:3.0];*/
+    [[kkMsgDataMgr getInstance] sendMsg:msg inChatRoom:cr_id];
 }
 
 -(void) clickedMsgListview:(kkMsgListView *) msgListview {
     [self.editTextView.msgTextView resignFirstResponder];
 }
 
+-(void) headerWillLoad:(kkMsgListView *)msgListView {
+    if (cr_id < 0) {
+        return;
+    }
+    kkMsgDataMgr* mgr = [kkMsgDataMgr getInstance];
+    int last_id = -1;
+    if ([self.msgListView.msgArray count] > 0) {
+        last_id = [(NSNumber *) [(NSDictionary *) [self.msgListView.msgArray objectAtIndex:0] objectForKey:@"id"] intValue];
+    }
+    
+    NSArray* olderMsgs = [mgr getMoreMsgsForChatRoom:cr_id lastId:last_id];
+    [self.msgListView pushMsgs:olderMsgs];
+    
+}
+
+-(void) onReceivedMsgs:(NSArray *) msgs {
+    for (int i = 0; i < [msgs count]; i++) {
+        NSDictionary* chatInfo = [(NSDictionary *) [msgs objectAtIndex:i] objectForKey:@"chatinfo"];
+        int new_cr_id = [(NSNumber *) [chatInfo objectForKey:@"cr_id"] intValue];
+            //NSLog(@"%@:%d", chatInfo, cr_id);
+        if (new_cr_id == cr_id) {
+            NSArray* ms = [(NSDictionary *) [msgs objectAtIndex:i] objectForKey:@"msgs"];;    
+            
+            [self.msgListView appendMsgs:ms];
+            break;
+        }
+    }
+}
+
+-(void) onMsgWillSend:(NSDictionary *) msg inChatRoom:(NSNumber *) new_cr_id {
+    if ([new_cr_id intValue] != cr_id) {
+        return;
+    }
+    [self.msgListView appendMsg:msg];
+}
+
+-(void) onMsgDidSend: (NSDictionary*) sendResult {
+    //NSLog(@"the send result:%@", sendResult);
+    int new_cr_id = [(NSNumber *) [sendResult objectForKey:@"cr_id"] intValue];
+    if (new_cr_id != cr_id) {
+        return;
+    }
+    NSString* status = [sendResult objectForKey:@"status"];
+    int msg_id = [(NSNumber *) [sendResult objectForKey:@"msg_id"] intValue];
+    [self.msgListView updateMsg:msg_id withStatus:status];
+}
 @end

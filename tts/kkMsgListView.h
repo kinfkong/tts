@@ -19,11 +19,13 @@
     
     NSMutableArray* msgArray;
     NSString* currentUser;
+    NSDictionary* chatRoomInfo;
 }
 
 @property(nonatomic, retain) id<kkMsgListViewDelegate> delegate;
 @property(nonatomic, retain) NSMutableArray* msgArray;
 @property(nonatomic, retain) NSString* currentUser;
+@property(nonatomic, retain) NSDictionary* chatRoomInfo;
 
 -(void) resizeHeight:(CGFloat) height;
 
@@ -31,15 +33,19 @@
 
 -(void) appendMsg:(id) msg;
 
--(void) updateMsg:(NSString*) innerMsgId withStatus:(NSString *) status;
+-(void) updateMsg:(int) msg_id withStatus:(NSString *) status;
 
 -(void) moveToBottom;
 
+-(void) reloadData;
+
+-(void) pushMsgs:(NSArray *) oldMsgs;
 @end
 
 @protocol kkMsgListViewDelegate <NSObject>
 
 @optional
 -(void) clickedMsgListview:(kkMsgListView *) msgListview;
+-(void) headerWillLoad:(kkMsgListView *) msgListView;
 
 @end

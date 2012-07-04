@@ -7,7 +7,8 @@
 //
 
 #import "kkChatViewCell.h"
-#import "NSDate-Utilities.h"
+
+#import "kkDateUtil.h"
 
 #define KKCHATCELL_TIME_FONT ([UIFont systemFontOfSize:12])
 #define KKCHATCELL_TIME_HEIGHT (20)
@@ -34,6 +35,12 @@
         loadingView.frame = CGRectMake(0, 0, 10, 10);
         [loadingView stopAnimating];
         [self addSubview:loadingView];
+        
+        warningView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"send_failed_status.png"]];
+        warningView.frame = CGRectMake(0, 0, 15, 15);
+        warningView.hidden = YES;
+        
+        [self addSubview:warningView];
         
         profileView = [[kkProfileHeaderView alloc] initWithFrame:
                                             CGRectMake(0, 0, KKCHATCELL_PROFILEVIEW_HEIGHT, KKCHATCELL_PROFILEVIEW_HEIGHT)];
@@ -75,46 +82,8 @@
     // Configure the view for the selected state
 }
 
--(NSString*) getTimeString:(NSString*) theTime {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate* date = [dateFormatter dateFromString:theTime];
-    
-    NSInteger hour = [date hour];
-    NSInteger min = [date minute];
-    
-    NSString* result = nil;
-    if ([date isToday]) {
-        result = [NSString stringWithFormat:@"%@ %02d:%02d", @"今天", hour, min];
-    } else if ([date isYesterday]) {
-        result = [NSString stringWithFormat:@"%@ %02d:%02d", @"昨天", hour, min];
-    } else if ([date isThisWeek]) {
-        NSInteger weekDay = [date weekday];
-         NSArray* weekName = [NSArray arrayWithObjects:
-                                    @"星期日", 
-                                    @"星期一",
-                             @"星期二",
-                             @"星期三",
-                             @"星期四",
-                             @"星期五",
-                             @"星期六",
-                                nil];
-        result = [NSString stringWithFormat:@"%@ %02d:%02d", [weekName objectAtIndex:(weekDay - 1)], hour, min];
-    } else if ([date isThisYear]) {
-        NSInteger month = [date month];
-        NSInteger day = [date day];
-        result = [NSString stringWithFormat:@"%02d-%02d %02d:%02d", month, day, hour, min];
-    } else {
-        NSInteger year = [date year];
-        NSInteger month = [date month];
-        NSInteger day = [date day];
-        result = [NSString stringWithFormat:@"%d-%02d-%02d %02d:%02d", year, month, day, hour, min];
-    }
-    return result;
-}
-
 -(CGFloat) showTime:(NSDictionary *) msgData currentHeight:(CGFloat) currentHeight {
-    timeLable.text = [self getTimeString:[msgData objectForKey:@"time"]];
+    timeLable.text = [kkDateUtil getTimeString:[msgData objectForKey:@"create_time"]];
     CGSize TimeLabelSize = [timeLable.text sizeWithFont:KKCHATCELL_TIME_FONT
                                       constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT) 
                                           lineBreakMode:UILineBreakModeWordWrap];
@@ -136,9 +105,9 @@
     
     
     if (type == 0) {
-        [profileView setType:1];
+        profileView.showQuestionMark = NO;
     } else {
-        [profileView setType:0];
+        profileView.showQuestionMark = YES;
     }
     
     
@@ -149,7 +118,7 @@
     }
     
     msgLabel.frame = CGRectMake(x, currentHeight, 0, 0);
-    NSString* msg = [msgData objectForKey:@"msg"];
+    NSString* msg = [msgData objectForKey:@"text"];
     if (type == 0) {
         [msgLabel setText:msg align:1];
     } else {
@@ -163,6 +132,13 @@
         [loadingView startAnimating];
     } else {
         [loadingView stopAnimating];
+    }
+    if ([status isEqualToString:@"send_failed"]) {
+        warningView.frame = CGRectMake(msgLabel.frame.origin.x - warningView.frame.size.width - loadingViewMargin, 
+                   msgLabel.frame.origin.y + (msgLabel.frame.size.height - warningView.frame.size.height) / 2, warningView.frame.size.width, warningView.frame.size.height);
+        warningView.hidden = NO;
+    } else {
+        warningView.hidden = YES;
     }
     
     return MAX(profileView.frame.size.height, msgLabel.frame.size.height);
@@ -219,7 +195,7 @@
 }
 
 +(CGFloat) heightForCell:(NSDictionary *) data show:(int) what {
-    NSString* msg = [data objectForKey:@"msg"];
+    NSString* msg = [data objectForKey:@"text"];
     CGFloat height = 0;
     if (what & kkChatViewShowMsg) {
         height += MAX([kkBubbleLabel heightForText:msg], KKCHATCELL_PROFILEVIEW_HEIGHT);
