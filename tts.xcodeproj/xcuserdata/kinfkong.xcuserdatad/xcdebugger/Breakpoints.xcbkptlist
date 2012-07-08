@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "tts/kkChatListController.m"
-         timestampString = "363017478.28392"
+         timestampString = "363104901.288302"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "149"
-         endingLineNumber = "149"
+         startingLineNumber = "166"
+         endingLineNumber = "166"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -54,6 +54,17 @@
          endingLineNumber = "118"
          landmarkName = "-getChatRoomInfo:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "tts/kkLastMsgView.m"
+         timestampString = "363331881.056436"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "5"
+         endingLineNumber = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

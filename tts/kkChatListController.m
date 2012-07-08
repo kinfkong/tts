@@ -78,6 +78,7 @@
     [dataMgr addObserver:self event:kkMsgDataReceivedNewMsgs];
     [dataMgr addObserver:self event:kkMsgDataMgrMsgSending];
     [dataMgr addObserver:self event:kkMsgDataMgrMsgDidSend];
+    [dataMgr addObserver:self event:kkMsgDataMgrUnReadChange];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(insertTestData)];
 	self.navigationItem.rightBarButtonItem = item;
     
@@ -101,14 +102,30 @@
     [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataReceivedNewMsgs];
     [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataMgrMsgDidSend];
         [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataMgrMsgSending];
+    [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataMgrUnReadChange];
     // Release any retained subviews of the main view.
 }
 
+-(void) updateTotalUnRead {
+    int sum = 0;
+    for (int i = 0; i < [chatList count]; i++) {
+        sum += [(NSNumber *) [(NSDictionary *) [chatList objectAtIndex:i] objectForKey:@"unread"] intValue];
+    }
+    //NSLog(@"the sum:%d", sum);
+    //self.tabBarController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", sum];
+    //self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", sum];
+    if (sum > 0) {
+        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", sum];
+    } else {
+        self.navigationController.tabBarItem.badgeValue = nil;
+    }
+}
 -(void) onReceivedMsgs:(NSArray *) msgs {
     //NSLog(@"recevied msgs ... controller");
     kkMsgDataMgr* dataMgr = [kkMsgDataMgr getInstance];
     chatList = [dataMgr getChatRoomList];
     [tableView reloadData];
+    [self updateTotalUnRead];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -164,6 +181,15 @@
     kkMsgDataMgr* dataMgr = [kkMsgDataMgr getInstance];
     chatList = [dataMgr getChatRoomList];
     [tableView reloadData];
+}
+
+-(void) onUnreadChange:(NSNumber *) cr_id {
+    //NSLog(@"unread changed..");
+    kkMsgDataMgr* dataMgr = [kkMsgDataMgr getInstance];
+    chatList = [dataMgr getChatRoomList];
+    [tableView reloadData];
+    [self updateTotalUnRead];
+   
 }
 
 @end

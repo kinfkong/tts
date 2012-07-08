@@ -78,6 +78,7 @@
     // [dataMgr getMsgsForChatRoom:101];
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -122,16 +123,14 @@
         NSArray* msgs = [[kkMsgDataMgr getInstance] getMsgsForChatRoom:cr_id];
         self.msgListView.msgArray = [NSMutableArray arrayWithArray:msgs];
         [self.msgListView reloadData];
-        [dataMgr addObserver:self event:kkMsgDataReceivedNewMsgs];
-        [dataMgr addObserver:self event:kkMsgDataMgrMsgSending];
-        [dataMgr addObserver:self event:kkMsgDataMgrMsgDidSend];
+
         [self.msgListView moveToBottom];
+        //[dataMgr markAllRead:cr_id];
     }
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(insertTestData)];
-	self.navigationItem.rightBarButtonItem = item;
-    
     currentUser = @"kinfkong";
+    
+    
     
 }
 
@@ -171,9 +170,7 @@
     // Release any retained subviews of the main view.
     self.msgListView = nil;
     self.editTextView = nil;
-    [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataReceivedNewMsgs];
-    [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataMgrMsgSending];    
-    [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataMgrMsgDidSend];    
+ 
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -225,6 +222,22 @@
     
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    kkMsgDataMgr* mgr = [kkMsgDataMgr getInstance];
+    [mgr markAllRead:cr_id];
+    
+    [[kkMsgDataMgr getInstance] addObserver:self event:kkMsgDataReceivedNewMsgs];
+    [[kkMsgDataMgr getInstance] addObserver:self event:kkMsgDataMgrMsgSending];    
+    [[kkMsgDataMgr getInstance] addObserver:self event:kkMsgDataMgrMsgDidSend];
+}
+
+-(void) viewDidDisappear:(BOOL)animated {
+    [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataReceivedNewMsgs];
+    [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataMgrMsgSending];    
+    [[kkMsgDataMgr getInstance] removeObserver:self event:kkMsgDataMgrMsgDidSend];   
+}
+
+
 -(void) onReceivedMsgs:(NSArray *) msgs {
     for (int i = 0; i < [msgs count]; i++) {
         NSDictionary* chatInfo = [(NSDictionary *) [msgs objectAtIndex:i] objectForKey:@"chatinfo"];
@@ -234,6 +247,9 @@
             NSArray* ms = [(NSDictionary *) [msgs objectAtIndex:i] objectForKey:@"msgs"];;    
             
             [self.msgListView appendMsgs:ms];
+            kkMsgDataMgr* mgr = [kkMsgDataMgr getInstance];
+            [mgr markAllRead:cr_id];
+        
             break;
         }
     }

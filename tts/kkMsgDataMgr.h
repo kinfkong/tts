@@ -15,6 +15,8 @@ typedef enum {
     
     kkMsgDataMgrMsgSending,
     kkMsgDataMgrMsgDidSend,
+    
+    kkMsgDataMgrUnReadChange,
 } kkMsgDataEvent;
 
 @interface kkMsgDataMgr : NSObject {
@@ -39,5 +41,7 @@ typedef enum {
 -(void) receivedMsgs:(NSArray *) msgs;
 
 -(void) sendMsg:(NSString*) text inChatRoom:(int) cr_id;
+
+-(void) markAllRead:(int) cr_id;
 
 @end

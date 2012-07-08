@@ -37,6 +37,7 @@
         NSString* imageName = [NSString stringWithFormat:@"%@_status.png", status];
         imageView.image = [UIImage imageNamed:imageName];
         orix += imageView.frame.size.width;
+        imageView.hidden = NO;
     } else {
         imageView.hidden = YES;
     }

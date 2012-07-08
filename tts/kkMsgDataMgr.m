@@ -325,4 +325,25 @@ static kkMsgDataMgr* theInstance = nil;
     [self performSelector:@selector(finishedSendingMsg:) withObject:sendResult afterDelay:3];
 }
 
+-(void) markAllRead:(int) cr_id {
+    NSString* sql = @"update chat_room set unread=0 where cr_id=%d";
+    if (![db executeUpdateWithFormat:sql, cr_id]) {
+        NSLog(@"failed to mark all read.");
+        return;
+    }
+    
+    // send the remote TODO
+    NSArray* os = [observers objectForKey:[NSNumber numberWithInt:kkMsgDataMgrUnReadChange]];
+    
+    for (int i = 0; i < [os count]; i++) {
+        id o = [os objectAtIndex:i];
+        //NSLog(@"the observer:%@", o);
+        if (o && [o respondsToSelector:@selector(onUnreadChange:)]) {
+            
+            [o performSelector:@selector(onUnreadChange:) withObject:[NSNumber numberWithInt:cr_id]];
+        }
+    }
+}
+
+
 @end

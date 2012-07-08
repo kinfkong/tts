@@ -9,6 +9,7 @@
 #import "kkAppDelegate.h"
 #import "kkTestViewController.h"
 #import "kkMainTabController.h"
+#import "kkLoginController.h"
 
 @implementation kkAppDelegate
 
@@ -21,11 +22,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    sleep(3);
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    kkMainTabController* mainView = [[kkMainTabController alloc] init];
-    self.window.rootViewController = mainView;
+    //kkMainTabController* mainView = [[kkMainTabController alloc] init];
+    kkLoginController* login = [[kkLoginController alloc] init];
+    self.window.rootViewController = login;
     [self.window makeKeyAndVisible];
     return YES;
 }
