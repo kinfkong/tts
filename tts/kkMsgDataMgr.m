@@ -17,11 +17,10 @@
 
 static kkMsgDataMgr* theInstance = nil;
 
--(id) init {
+-(id) initWithUser:(NSString*) userId {
     self = [super init];
     if (self) {
-        NSString* user_id = @"11111111";
-        NSString* dbName = [NSString stringWithFormat:@"%@.db", user_id];
+        NSString* dbName = [NSString stringWithFormat:@"%@.db", userId];
         [self initDB:dbName];
         observers = [[NSMutableDictionary alloc] init];
     }
@@ -29,7 +28,8 @@ static kkMsgDataMgr* theInstance = nil;
 }
 +(kkMsgDataMgr *) getInstance {
     if (theInstance == nil) {
-        theInstance = [[kkMsgDataMgr alloc] init];
+        NSString* userId = [[[NSUserDefaults standardUserDefaults] objectForKey:@"basic"] objectForKey:@"uid"];
+        theInstance = [[kkMsgDataMgr alloc] initWithUser:userId];
     }
     return theInstance;
 }
@@ -345,5 +345,27 @@ static kkMsgDataMgr* theInstance = nil;
     }
 }
 
++(void) resetCurrentUser:(NSDictionary *) userInfo {
+    // save
+    [[NSUserDefaults standardUserDefaults] setObject:userInfo forKey:@"basic"];
+    NSString* userId = [userInfo objectForKey:@"uid"];
+    theInstance = [[kkMsgDataMgr alloc] initWithUser:userId];
+}
+
++(BOOL) hasUserInfo {
+    //+ (NSUserDefaults *)standardUserDefaults;
+    NSUserDefaults* userInfo = [NSUserDefaults standardUserDefaults];
+    if (userInfo == nil) {
+        return NO;
+    }
+    if ([userInfo objectForKey:@"basic"]) {
+        return YES;
+    }
+    return NO;
+}
+
++(void) removeUserInfo {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"basic"];
+}
 
 @end

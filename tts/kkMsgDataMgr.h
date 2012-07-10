@@ -44,4 +44,11 @@ typedef enum {
 
 -(void) markAllRead:(int) cr_id;
 
+
++(void) resetCurrentUser:(NSDictionary *) userInfo;
+
++(BOOL) hasUserInfo;
+
++(void) removeUserInfo;
+
 @end

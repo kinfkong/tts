@@ -14,6 +14,7 @@
     IBOutlet UIWebView* webView;
     UIActivityIndicatorView* loadingView;
     kkNoteView* noteView;
+    NSMutableDictionary* userInfo;
 }
 
 -(IBAction) dismiss:(id) sender;

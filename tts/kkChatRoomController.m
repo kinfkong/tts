@@ -83,7 +83,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    // self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     //UIImage* bgImage = [UIImage imageNamed:@"chat_bg.png"];
     //self.view.backgroundColor  = [UIColor colorWithPatternImage:bgImage];
 /*
@@ -128,7 +128,6 @@
         //[dataMgr markAllRead:cr_id];
     }
     
-    currentUser = @"kinfkong";
     
     
     

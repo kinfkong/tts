@@ -82,6 +82,7 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(insertTestData)];
 	self.navigationItem.rightBarButtonItem = item;
     
+    [self updateTotalUnRead];
     //[self insertTestData];
     
     

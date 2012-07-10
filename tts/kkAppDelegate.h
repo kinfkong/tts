@@ -19,4 +19,8 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+- (void) useTabController;
+
+- (void) useLoginController;
+
 @end

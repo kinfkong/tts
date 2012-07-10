@@ -8,6 +8,7 @@
 
 #import "kkMainTabController.h"
 #import "kkChatListController.h"
+#import "kkSettingController.h"
 
 @interface kkMainTabController ()
 
@@ -31,7 +32,10 @@
     kkChatListController* chatList = [[kkChatListController alloc] init];
     UINavigationController* chat = [[UINavigationController alloc] initWithRootViewController:chatList];
     chat.navigationBar.tintColor = [UIColor colorWithWhite:0.3 alpha:1];
-    self.viewControllers = [NSArray arrayWithObjects:chat, nil];
+    
+    kkSettingController* settings = [[kkSettingController alloc] init];
+    UINavigationController* setting = [[UINavigationController alloc] initWithRootViewController:settings];
+    self.viewControllers = [NSArray arrayWithObjects:chat, setting, nil];
 }
 
 - (void)viewDidUnload

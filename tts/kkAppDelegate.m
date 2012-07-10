@@ -10,6 +10,7 @@
 #import "kkTestViewController.h"
 #import "kkMainTabController.h"
 #import "kkLoginController.h"
+#import "kkMsgDataMgr.h"
 
 @implementation kkAppDelegate
 
@@ -26,9 +27,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    //kkMainTabController* mainView = [[kkMainTabController alloc] init];
-    kkLoginController* login = [[kkLoginController alloc] init];
-    self.window.rootViewController = login;
+    if ([kkMsgDataMgr hasUserInfo]) {
+        [self useTabController];
+    } else {
+        [self useLoginController];
+    }
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -155,5 +158,22 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+
+- (void) useTabController {
+    kkMainTabController* mainView = [[kkMainTabController alloc] init];
+    mainView.view.backgroundColor = [UIColor whiteColor];
+    //self.window.rootViewController.view = nil;
+    self.window.rootViewController = mainView;
+}
+
+- (void) useLoginController {
+    kkLoginController* login = [[kkLoginController alloc] init];
+    login.view.backgroundColor = [UIColor whiteColor];
+    //self.window.rootViewController.view = nil;
+    self.window.rootViewController = login;
+}
+
+
 
 @end

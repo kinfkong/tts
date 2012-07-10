@@ -28,6 +28,7 @@
 		727FB22E15A0017F00FE01EB /* sending_status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 727FB22C15A0017F00FE01EB /* sending_status@2x.png */; };
 		727FB23415A00C9200FE01EB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 727FB23315A00C9200FE01EB /* libsqlite3.dylib */; };
 		727FB23715A0746800FE01EB /* kkDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 727FB23615A0746800FE01EB /* kkDateUtil.m */; };
+		7285F4BE15AC70CE0033623C /* kkSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7285F4BD15AC70CE0033623C /* kkSettingController.m */; };
 		7287DCA1159895B00006DE7B /* chat_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7287DC9F159895B00006DE7B /* chat_bg.png */; };
 		7287DCA2159895B00006DE7B /* chat_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7287DCA0159895B00006DE7B /* chat_bg@2x.png */; };
 		7287DD161598AAE80006DE7B /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7287DD151598AAE80006DE7B /* GradientButton.m */; };
@@ -146,6 +147,8 @@
 		727FB23315A00C9200FE01EB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		727FB23515A0746800FE01EB /* kkDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kkDateUtil.h; sourceTree = "<group>"; };
 		727FB23615A0746800FE01EB /* kkDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kkDateUtil.m; sourceTree = "<group>"; };
+		7285F4BC15AC70CE0033623C /* kkSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kkSettingController.h; sourceTree = "<group>"; };
+		7285F4BD15AC70CE0033623C /* kkSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kkSettingController.m; sourceTree = "<group>"; };
 		7287DC9F159895B00006DE7B /* chat_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_bg.png; sourceTree = "<group>"; };
 		7287DCA0159895B00006DE7B /* chat_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_bg@2x.png"; sourceTree = "<group>"; };
 		7287DD141598AAE80006DE7B /* GradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientButton.h; sourceTree = "<group>"; };
@@ -504,6 +507,8 @@
 				7272DEA615A8090E002A7A32 /* kkAuthController.h */,
 				7272DEA715A8090E002A7A32 /* kkAuthController.m */,
 				7272DEA815A8090E002A7A32 /* kkAuthController.xib */,
+				7285F4BC15AC70CE0033623C /* kkSettingController.h */,
+				7285F4BD15AC70CE0033623C /* kkSettingController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -747,6 +752,7 @@
 				72C8BA5615A7FAE1005299EF /* kkLoginController.m in Sources */,
 				7272DEA915A8090E002A7A32 /* kkAuthController.m in Sources */,
 				72881AC915A8997D002E8C61 /* kkNoteView.m in Sources */,
+				7285F4BE15AC70CE0033623C /* kkSettingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
